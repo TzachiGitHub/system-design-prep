@@ -1,18 +1,22 @@
 import type { RoadmapNode } from '../types';
 import { capTheoremQuiz } from './quiz/cap-theorem';
+import { acidBaseQuiz } from './quiz/acid-base';
 import { databasesQuiz } from './quiz/databases';
 import { designUrlShortenerQuiz } from './quiz/design-url-shortener';
 import { eventDrivenQuiz } from './quiz/event-driven';
 import { loadBalancersQuiz } from './quiz/load-balancers';
 import { microservicesQuiz } from './quiz/microservices';
+import { cqrsQuiz } from './quiz/cqrs';
 
 const quizMap: Record<string, import('../types').QuizQuestion[]> = {
   'cap-theorem': capTheoremQuiz,
+  'acid-base': acidBaseQuiz,
   'databases': databasesQuiz,
   'design-url-shortener': designUrlShortenerQuiz,
   'event-driven': eventDrivenQuiz,
   'load-balancers': loadBalancersQuiz,
   'microservices': microservicesQuiz,
+  'cqrs': cqrsQuiz,
 };
 
 export const roadmapNodes: RoadmapNode[] = [

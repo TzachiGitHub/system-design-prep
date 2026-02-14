@@ -810,4 +810,18 @@ end
       "**Local + Global hybrid**: Keep fast local counters per API server (approximate), sync to Redis periodically. Handles Redis latency spikes.",
       "**Lua scripts**: Atomic check-and-decrement in Redis. No race conditions between concurrent requests.",
       "**Multi-tier rate limiting**: Per-user, per-IP, per-endpoint, and global limits. Check all — reject if any is exceeded.",
-      "**Fail open**: If Redis is unreachable
+      "**Fail open**: If Redis is unreachable, allow requests through to maintain availability. Better to over-serve than drop legitimate traffic."
+    ],
+    followUpQuestions: [
+      "How would you handle rate limiting across multiple data centers?",
+      "How would you implement dynamic rate limits that adjust based on system load?",
+      "How would you handle burst traffic while maintaining fairness?"
+    ],
+    commonMistakes: [
+      "Not considering distributed scenarios — single-server rate limiting breaks with multiple API servers",
+      "Failing to handle Redis unavailability — should fail open, not crash",
+      "Not differentiating between rate limit tiers (free vs paid users)",
+      "Ignoring clock synchronization issues in distributed sliding window implementations"
+    ]
+  }
+];

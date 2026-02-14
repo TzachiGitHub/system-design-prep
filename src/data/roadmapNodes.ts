@@ -1,4 +1,19 @@
 import type { RoadmapNode } from '../types';
+import { capTheoremQuiz } from './quiz/cap-theorem';
+import { databasesQuiz } from './quiz/databases';
+import { designUrlShortenerQuiz } from './quiz/design-url-shortener';
+import { eventDrivenQuiz } from './quiz/event-driven';
+import { loadBalancersQuiz } from './quiz/load-balancers';
+import { microservicesQuiz } from './quiz/microservices';
+
+const quizMap: Record<string, import('../types').QuizQuestion[]> = {
+  'cap-theorem': capTheoremQuiz,
+  'databases': databasesQuiz,
+  'design-url-shortener': designUrlShortenerQuiz,
+  'event-driven': eventDrivenQuiz,
+  'load-balancers': loadBalancersQuiz,
+  'microservices': microservicesQuiz,
+};
 
 export const roadmapNodes: RoadmapNode[] = [
   // ── Fundamentals ──
@@ -326,3 +341,10 @@ export const roadmapNodes: RoadmapNode[] = [
     ],
   },
 ];
+
+// Merge deep quiz data into nodes
+roadmapNodes.forEach(node => {
+  if (quizMap[node.id]) {
+    node.quizQuestions = quizMap[node.id];
+  }
+});
